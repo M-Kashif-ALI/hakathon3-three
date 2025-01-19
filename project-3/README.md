@@ -1,1 +1,1 @@
-deployed url = https://milestone-3-e-commerce-next14.vercel.app/
+deployed url = not deployed
