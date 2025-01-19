@@ -30,7 +30,7 @@ const Product = () => {
   const [product, setProduct] = useState<productTypes[]>([]);
   const [categories, setCategories] = useState<categoryTypes[]>([]);
   const { add } = useContext(CartContext);
-  const [NProduct, setNProduct] = useState<productTypes[]>([])
+  const [NProduct, setNProduct] = useState<productTypes[]>([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -81,7 +81,7 @@ const Product = () => {
             "slug": slug.current
         }`;
         const nProducts = await client.fetch(featured);
-        setNProduct(nProducts)
+        setNProduct(nProducts);
       } catch (error) {
         console.log(error);
       }
@@ -139,16 +139,18 @@ const Product = () => {
               key={index}
               className="text-[#272343] rounded-md overflow-hidden"
             >
-              <Image
-                src={category.image}
-                alt={category.name}
-                width={424}
-                height={424}
-                className="h-[424px] w-[424px] object-cover"
-              />
-              <p className="text-white font-semibold relative bg-black/85 backdrop:blur-sm bottom-[80px] h-[85px] pl-3 pt-7 rounded-md">
-                {category.name}
-              </p>
+              <Link href={`/category/${encodeURIComponent(category.name)}`}>
+                <Image
+                  src={category.image}
+                  alt={category.name}
+                  width={424}
+                  height={424}
+                  className="h-[424px] w-[424px] object-cover"
+                />
+                <p className="text-white font-semibold relative bg-black/85 backdrop:blur-sm bottom-[80px] h-[85px] pl-3 pt-7 rounded-md">
+                  {category.name}
+                </p>
+              </Link>
             </div>
           ))}
         </div>
@@ -160,29 +162,29 @@ const Product = () => {
           {product.slice(5, 14).map((prd) => (
             <div key={prd._id}>
               <Link href={`/product/${prd.slug}`}>
-              <div>
-                <Image
-                  src={prd.imageurl}
-                  alt={prd.title}
-                  width={500}
-                  height={500}
-                  className="rounded h-[260] w-[260px]"
-                />
-              </div>
-              <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-[#272343] text-sm hover:text-[#029FAE] duration-200">
-                    {prd.title}
-                  </p>
-                  <p className="text-[#272343] text-lg">${prd.price}</p>
+                  <Image
+                    src={prd.imageurl}
+                    alt={prd.title}
+                    width={500}
+                    height={500}
+                    className="rounded h-[260] w-[260px]"
+                  />
                 </div>
-                <div
-                  className="h-[44px] w-[44px] rounded-md cursor-pointer my-5 duration-200 flex items-center justify-center bg-[#F0F2F3] hover:bg-[#029FAE] hover:text-white"
-                  onClick={() => add({ ...prd, quantity: 1 })}
-                >
-                  <RiShoppingCartFill className="text-lg" />
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-[#272343] text-sm hover:text-[#029FAE] duration-200">
+                      {prd.title}
+                    </p>
+                    <p className="text-[#272343] text-lg">${prd.price}</p>
+                  </div>
+                  <div
+                    className="h-[44px] w-[44px] rounded-md cursor-pointer my-5 duration-200 flex items-center justify-center bg-[#F0F2F3] hover:bg-[#029FAE] hover:text-white"
+                    onClick={() => add({ ...prd, quantity: 1 })}
+                  >
+                    <RiShoppingCartFill className="text-lg" />
+                  </div>
                 </div>
-              </div>
               </Link>
             </div>
           ))}

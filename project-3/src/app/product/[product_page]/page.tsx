@@ -77,7 +77,7 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
   }
 
   return (
-    <main className="bg-white pt-[100px]">
+    <main className="bg-white pt-[200px]">
       <div className="flex gap-10 px-10">
         <div className="basis-[50%]">
           <Image
@@ -96,8 +96,12 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
           <p className="text-[#272343] text-[22px] border-t mt-4 pt-4">
             {product.description}
           </p>
+          <p className="text-[#272343] text-[22px] border-t mt-4 pt-4 flex gap-3">
+            <span>Stock Level:</span>
+            <span>{product.inventory}</span>
+          </p>
           <div
-            className="rounded-md cursor-pointer my-5 duration-200 flex items-center justify-evenly bg-[#029FAE] h-[63px] w-[212px] text-white"
+            className="rounded-md cursor-pointer my-5 flex items-center justify-evenly bg-[#029FAE] h-[63px] w-[212px] text-white hover:bg-[#23bdcb] duration-200"
             onClick={() => add({ ...product, quantity: 1 })}
           >
             <RiShoppingCartFill className="text-lg" />
