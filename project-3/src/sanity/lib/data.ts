@@ -15,21 +15,27 @@ export interface IProduct {
 
 export const getAllProducts = async () => {
   try {
-    const featured = `*[_type == "products"] | order(_createdAt asc) {
-      _id,
-      title,
+    const query = `
+      *[_type == "products"] | order(_createdAt asc) {
+        _id,
+        title,
         tags,
         price,
         "category": category->title,
-        "categoryImg": category->image.asset -> url,
+        "categoryImg": category->image.asset->url,
         inventory,
         description,
-        'imageurl': image.asset -> url,
+        'imageurl': image.asset->url,
         "slug": slug.current
-    }`;
-    const products = await client.fetch(featured);
-    return products;
+      }
+    `;
+    const products = await client.fetch(query);
+    return products.map((product: IProduct) => ({
+      ...product,
+      slug: product.slug || null, // Handle missing slug
+    }));
   } catch (error) {
-    console.log(error);
+    console.error("Error fetching products:", error);
+    return [];
   }
 };

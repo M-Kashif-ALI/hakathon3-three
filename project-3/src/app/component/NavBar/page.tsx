@@ -7,14 +7,16 @@ import { FiCheck } from "react-icons/fi";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
 import Link from "next/link";
 import { CartContext } from "@/app/context";
+import SearchBar from "../SearchBar";
+import { SearchResults } from "../SearchResults";
 
 const NavBar = () => {
   const { count } = useContext(CartContext);
   const [isOpen, setOpen] = useState(false);
+  const [results, setResults] = useState([]);
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-[#F0F2F3] z-50 text-black">
-      {/* Top Bar */}
       <div className="bg-[#272343] h-[45px] text-gray-400 flex flex-col md:flex-row items-center justify-around px-4 md:px-8">
         <p className="flex items-center gap-1 text-sm">
           <FiCheck />
@@ -29,14 +31,11 @@ const NavBar = () => {
           </li>
         </ul>
       </div>
-
-      {/* Main Navbar */}
       <div className="container mx-auto flex items-center justify-between h-20 px-4 md:px-8">
-        {/* Logo and Brand Name */}
         <div className="flex items-center gap-4">
           <Image
             src={`/images/logo1.png`}
-            alt="logo"
+            alt="Comforty Logo"
             width={40}
             height={50}
             className="w-[26.6px] h-[23.3px]"
@@ -47,8 +46,10 @@ const NavBar = () => {
             </span>
           </Link>
         </div>
-
-        {/* Cart and Mobile Menu Toggle */}
+        <div className="bg-[#eee] h-[70px] w-[300px] flex flex-col items-center justify-center min-w-[200px]">
+          <SearchBar setResults={setResults} />
+          <SearchResults results={results} />
+        </div>
         <div className="flex items-center gap-4">
           <Link href={"/component/Cart"}>
             <div className="hover:text-purple-600 cursor-pointer flex gap-2 h-[44px] w-[120px] rounded items-center justify-center bg-white">
@@ -58,7 +59,6 @@ const NavBar = () => {
               </span>
             </div>
           </Link>
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-2xl"
             onClick={() => setOpen(!isOpen)}
@@ -67,8 +67,6 @@ const NavBar = () => {
           </button>
         </div>
       </div>
-
-      {/* Mobile Menu */}
       {isOpen && (
         <div className="absolute top-[95px] left-0 w-full bg-white shadow-md z-40">
           <ul className="flex flex-col items-start gap-4 px-6 py-4">
@@ -87,8 +85,6 @@ const NavBar = () => {
           </ul>
         </div>
       )}
-
-      {/* Bottom Bar */}
       <div className="flex items-center justify-around bg-white h-[74px] px-4 md:px-8">
         <ul className="hidden md:flex items-center gap-8 text-[#636270]">
           <Link href={`/`}>

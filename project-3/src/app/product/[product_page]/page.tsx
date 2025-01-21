@@ -42,7 +42,7 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const featured = `*[_type == "products" && slug.current=="${params.product_page}"] | order(_createdAt asc) {
+        const featured = `*[_type == "products" && _id=="${params.product_page}"] | order(_createdAt asc) {
           _id,
           title,
           tags,
@@ -120,7 +120,7 @@ const ProductPage = ({ params }: { params: { product_page: string } }) => {
         <div className="flex flex-wrap justify-around gap-5">
           {featrePrd.slice(5, 11).map((prd) => (
             <div key={prd._id}>
-              <Link href={`/product/${prd.slug}`}>
+              <Link href={`/product/${prd._id}`}>
                 <div>
                   <Image
                     src={prd.imageurl}

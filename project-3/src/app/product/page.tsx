@@ -90,7 +90,7 @@ const Product = () => {
   });
 
   return (
-    <main className="bg-white text-black md:px-[60px] px-[10px] py-[30px]">
+    <main className="bg-white text-black md:px-[60px] px-[10px] py-[30px] mt-[190px]">
       <section>
         <h1 className="text-[#272343] text-[32px] font-semibold">
           Featured Products
@@ -99,13 +99,14 @@ const Product = () => {
         <div className="flex gap-5 flex-wrap items-center justify-center">
           {NProduct.map((featured, i) => (
             <div key={i}>
-              <Link href={`/product/${featured.slug}`}>
+              <Link href={`/product/${featured._id}`}>
                 <div>
                   <Image
                     src={featured.imageurl}
                     alt={featured.title}
                     width={500}
                     height={500}
+                    loading="lazy"
                     className="rounded h-[260] w-[260px]"
                   />
                 </div>
@@ -145,6 +146,7 @@ const Product = () => {
                   alt={category.name}
                   width={424}
                   height={424}
+                  loading="lazy"
                   className="h-[424px] w-[424px] object-cover"
                 />
                 <p className="text-white font-semibold relative bg-black/85 backdrop:blur-sm bottom-[80px] h-[85px] pl-3 pt-7 rounded-md">
@@ -161,13 +163,51 @@ const Product = () => {
         <div className="flex gap-5 flex-wrap justify-center">
           {product.slice(5, 14).map((prd) => (
             <div key={prd._id}>
-              <Link href={`/product/${prd.slug}`}>
+              <Link href={`/product/${prd._id}`}>
                 <div>
                   <Image
                     src={prd.imageurl}
                     alt={prd.title}
                     width={500}
                     height={500}
+                    loading="lazy"
+                    className="rounded h-[260] w-[260px]"
+                  />
+                </div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-[#272343] text-sm hover:text-[#029FAE] duration-200">
+                      {prd.title}
+                    </p>
+                    <p className="text-[#272343] text-lg">${prd.price}</p>
+                  </div>
+                  <div
+                    className="h-[44px] w-[44px] rounded-md cursor-pointer my-5 duration-200 flex items-center justify-center bg-[#F0F2F3] hover:bg-[#029FAE] hover:text-white"
+                    onClick={() => add({ ...prd, quantity: 1 })}
+                  >
+                    <RiShoppingCartFill className="text-lg" />
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+
+
+        <h1 className="text-[#272343] text-[32px] font-semibold">
+          Our All Products
+        </h1>
+        <div className="flex gap-5 flex-wrap justify-center">
+          {product.map((prd) => (
+            <div key={prd._id}>
+              <Link href={`/product/${prd._id}`}>
+                <div>
+                  <Image
+                    src={prd.imageurl}
+                    alt={prd.title}
+                    width={500}
+                    height={500}
+                    loading="lazy"
                     className="rounded h-[260] w-[260px]"
                   />
                 </div>
