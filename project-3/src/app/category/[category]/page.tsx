@@ -36,7 +36,7 @@ const CategoryPage = async ({ params }: ProductProps) => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           products.map((prd: any) => (
             <div key={prd._id}>
-              <Link href={`/product/${prd.slug}`}>
+              <Link href={`/product/${prd._id}`}>
                 <div>
                   <Image
                     src={prd.imageurl}
