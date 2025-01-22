@@ -247,5 +247,5 @@ interface types {
 
 ---
 
-![image alt]([https://github.com/M-Kashif-ALI/hakathon3-three/blob/e87abc1cbd96368a74090309de6b84a19689619a/Screenshot_16-1-2025_123617_web.whatsapp.com.jpeg](https://github.com/M-Kashif-ALI/hakathon3-three/blob/aeb85b16853d0df6361c0a150b6490c03c8a192b/components-ScreenShot.png))
+![image alt](https://github.com/M-Kashif-ALI/hakathon3-three/blob/aeb85b16853d0df6361c0a150b6490c03c8a192b/components-ScreenShot.png)
 
