@@ -10,10 +10,16 @@ import { CartContext } from "@/app/context";
 import SearchBar from "../SearchBar";
 import { SearchResults } from "../SearchResults";
 
+interface Product {
+  _id: string;
+  title: string;
+}
+
 const NavBar = () => {
   const { count } = useContext(CartContext);
   const [isOpen, setOpen] = useState(false);
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<Product[]>([]);
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <nav className="fixed top-0 left-0 w-full bg-[#F0F2F3] z-50 text-black">
@@ -47,8 +53,8 @@ const NavBar = () => {
           </Link>
         </div>
         <div className="bg-[#eee] h-[70px] w-[300px] flex flex-col items-center justify-center min-w-[200px]">
-          <SearchBar setResults={setResults} />
-          <SearchResults results={results} />
+        <SearchBar setResults={setResults} setIsActive={setIsActive} />
+        <SearchResults results={results} isActive={isActive} />
         </div>
         <div className="flex items-center gap-4">
           <Link href={"/component/Cart"}>

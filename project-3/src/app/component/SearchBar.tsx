@@ -1,7 +1,6 @@
 "use client";
 
 import { client } from "@/sanity/lib/client";
-import { Any } from "next-sanity";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
@@ -10,7 +9,12 @@ interface Product {
   title: string;
 }
 
-const SearchBar = ({ setResults }: Any) => {
+interface SearchBarProps {
+  setResults: (results: Product[]) => void;
+  setIsActive: (isActive: boolean) => void; // Add this prop to notify parent component
+}
+
+const SearchBar = ({ setResults, setIsActive }: SearchBarProps) => {
   const [input, setInput] = useState("");
 
   const fetchData = async (value: string) => {
@@ -36,8 +40,10 @@ const SearchBar = ({ setResults }: Any) => {
     setInput(value);
     if (value.trim()) {
       fetchData(value);
+      setIsActive(true); // Set isActive to true when there's input
     } else {
       setResults([]);
+      setIsActive(false); // Set isActive to false when input is cleared
     }
   };
 
