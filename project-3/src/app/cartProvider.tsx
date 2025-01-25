@@ -11,7 +11,7 @@ interface cartItem {
   inventory: number;
   description: string;
   imageurl: string;
-  quantity: number
+  quantity: number;
 }
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
@@ -38,24 +38,32 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   // --------------- Delete Functionality ------------------ \\
 
   const del = (id: string) => {
-    const existingItem = cart.find((cartItem) => cartItem._id === id); 
-    if (existingItem?.quantity === 1) {
-      setCart(cart.filter((cartItem) => cartItem._id !== id)); 
-    } else {
-      setCart(
-        cart.map((cartItem) =>
-          cartItem._id === id 
-            ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem
-        )
-      );
+    const existingItem = cart.find((cartItem) => cartItem._id === id);
+    if (existingItem) {
+      if (existingItem.quantity > 1) {
+        setCart(
+          cart.map((cartItem) =>
+            cartItem._id === id
+              ? { ...cartItem, quantity: cartItem.quantity - 1 }
+              : cartItem
+          )
+        );
+        setCount(count - 1);
+      }
     }
-    setCount(count - 1);
+  };
+  
+
+  // --------------- Clear Cart Functionality ------------------ \\
+
+  const clearCart = () => {
+    setCart([]);
+     setCount(0);
   };
 
   return (
     <div>
-      <CartContext.Provider value={{ cart, del, add, count }}>
+      <CartContext.Provider value={{ cart, del, add, count, clearCart }}>
         {children}
       </CartContext.Provider>
     </div>

@@ -93,7 +93,7 @@ const Product = () => {
   }, []);
 
   return (
-    <main className="bg-white text-black md:px-16 px-4 pt-24">
+    <main className="bg-white text-black md:px-16 px-4 pt-[200px]">
       <section>
         {/* Featured Products */}
         <h1 className="text-gray-800 text-4xl font-bold mb-2">

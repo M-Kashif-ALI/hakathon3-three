@@ -5,10 +5,12 @@ import { IoRemove } from "react-icons/io5";
 import { CartContext } from "../../context";
 import Image from "next/image";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
 const Cart = () => {
   const { add } = useContext(CartContext);
-  const { cart, del, count } = useContext(CartContext);
+  const { cart, del, count, clearCart } = useContext(CartContext);
 
   const subtotal = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -63,7 +65,7 @@ const Cart = () => {
 
                   <button
                     className="text-[24px] rounded-full duration-200 px-1 py-1 mt-2"
-                    onClick={() => del(item._id)}
+                    onClick={clearCart}
                   >
                     <RiDeleteBin6Line />
                   </button>
@@ -72,9 +74,11 @@ const Cart = () => {
             ))}
           </div>
         ) : (
-          <div>
-            <p>Your cart is empty</p>
-            <button>Continue Shopping</button>
+          <div className="w-[90vw] text-center">
+            <p className="font-bold text-3xl">Your cart is empty</p>
+            <Link href={"/product"} className="w-[100%] flex items-center justify-center" >
+            <button className="bg-cyan-400 h-[45px] w-[200px] rounded mt-3 flex items-center justify-center gap-3 text-gray-800">Continue Shopping <FaArrowRight /> </button>
+            </Link>
           </div>
         )}
         <div className="mt-6 w-[350px]">
