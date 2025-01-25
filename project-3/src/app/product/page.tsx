@@ -110,10 +110,10 @@ const Product = () => {
                   <Image
                     src={product.imageurl}
                     alt={`Image of ${product.title}`}
-                    width={500}
-                    height={500}
+                    width={256}
+                    height={256}
                     loading="lazy"
-                    className="rounded object-cover h-64 w-64"
+                    className="rounded object-cover"
                   />
                 </div>
                 </Link>
@@ -184,10 +184,10 @@ const Product = () => {
                   <Image
                     src={product.imageurl}
                     alt={`Image of ${product.title}`}
-                    width={500}
-                    height={500}
+                    width={256}
+                    height={256}
                     loading="lazy"
-                    className="rounded object-cover h-64 w-64"
+                    className="rounded object-cover"
                   />
                 </div>
                 </Link>
@@ -228,10 +228,10 @@ const Product = () => {
                   <Image
                     src={product.imageurl}
                     alt={`Image of ${product.title}`}
-                    width={500}
-                    height={500}
+                    width={256}
+                    height={256}
                     loading="lazy"
-                    className="rounded object-cover h-64 w-64"
+                    className="rounded object-cover"
                   />
                 </div>
                 </Link>
