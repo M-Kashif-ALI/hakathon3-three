@@ -90,7 +90,7 @@ const Product = () => {
   });
 
   return (
-    <main className="bg-white text-black md:px-[60px] px-[10px] py-[30px] mt-[190px]">
+    <main className="bg-white text-black md:px-[60px] px-[10px] pt-[200px]">
       <section>
         <h1 className="text-[#272343] text-[32px] font-semibold">
           Featured Products
