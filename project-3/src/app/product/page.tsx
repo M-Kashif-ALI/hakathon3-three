@@ -96,7 +96,7 @@ const Product = () => {
     <main className="bg-white text-black md:px-16 px-4 pt-[200px]">
       <section>
         {/* Featured Products */}
-        <h1 className="text-gray-800 text-4xl font-bold mb-2">
+        <h1 className="primary-text-color text-4xl font-bold mb-2">
           Featured Products
         </h1>
         <div className="flex flex-wrap gap-6 items-center justify-center">
@@ -117,12 +117,12 @@ const Product = () => {
                   />
                 </div>
                 </Link>
-                <div className="flex items-center justify-between mt-2">
+                <div className="flex items-center justify-between mt-2 primary-text-color">
                   <div>
-                    <p className="text-gray-800 text-sm hover:text-teal-600 transition">
+                    <p className="text-sm hover:text-teal-600 transition">
                       {product.title}
                     </p>
-                    <p className="text-gray-800 text-lg font-medium">
+                    <p className="text-lg font-medium">
                       ${product.price}
                     </p>
                   </div>
@@ -147,7 +147,7 @@ const Product = () => {
           {categories.map((category, index) => (
             <div
               key={index}
-              className="text-gray-800 rounded-md overflow-hidden w-[300px]"
+              className="primary-text-color rounded-md overflow-hidden w-[300px]"
             >
               <Link
                 href={`/category/${encodeURIComponent(category.name)}`}
@@ -170,7 +170,7 @@ const Product = () => {
         </div>
 
         {/* Selected Products */}
-        <h1 className="text-gray-800 text-4xl font-bold mt-10">
+        <h1 className="primary-text-color text-4xl font-bold mt-10">
           Our Products
         </h1>
         <div className="flex flex-wrap gap-6 items-center justify-center mt-4">
@@ -214,7 +214,7 @@ const Product = () => {
         </div>
 
         {/* All Products */}
-        <h1 className="text-gray-800 text-4xl font-bold mt-10">
+        <h1 className="primary-text-color text-4xl font-bold mt-10">
           All Products
         </h1>
         <div className="flex flex-wrap gap-6 items-center justify-center mt-4">
@@ -235,12 +235,12 @@ const Product = () => {
                   />
                 </div>
                 </Link>
-                <div className="flex items-center justify-between mt-2">
+                <div className="flex items-center justify-between mt-2 primary-text-color">
                   <div>
-                    <p className="text-gray-800 text-sm hover:text-teal-600 transition">
+                    <p className="text-sm hover:text-teal-600 transition">
                       {product.title}
                     </p>
-                    <p className="text-gray-800 text-lg font-medium">
+                    <p className="text-lg font-medium">
                       ${product.price}
                     </p>
                   </div>

@@ -49,7 +49,7 @@ const SearchBar = ({ setResults, setIsActive }: SearchBarProps) => {
 
   return (
     <div
-      className="bg-white flex gap-2 pl-2 items-center rounded-lg h-[40px] w-[100%] shadow-md"
+      className="bg-white flex md:gap-2 gap-0 pl-2 items-center rounded-lg h-[40px] md:w-[100%] shadow-md w-[70%]"
       role="search"
       aria-label="Search products"
     >
