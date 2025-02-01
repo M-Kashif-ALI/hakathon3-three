@@ -1,28 +1,31 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.NEXT_STRIPE_SECRET_KEY as string);
+const stripe = new Stripe(process.env.NEXT_STRIPE_SECRET_KEY as string, {
+  apiVersion: "2025-01-27.acacia",
+});
 
-
-interface CartProducts {
+interface Product {
   title: string;
   price: number;
   quantity: number;
   imageurl: string;
 }
 
+
 export const POST = async (req: Request) => {
   try {
     const body = await req.json();
+    if (!body.products || body.products.length === 0) {
+      return new NextResponse("No products in checkout", { status: 400 });
+    }
 
-    const { products }: { products: CartProducts[] } = body;
-
-    const lineItems = products.map((item) => ({
+    const lineItems = body.products.map((item: Product) => ({
       price_data: {
         currency: "usd",
         product_data: {
           name: item.title,
-          images: item.imageurl ? [item.imageurl] : [],
+          images: [item.imageurl],
         },
         unit_amount: item.price * 100,
       },
@@ -39,12 +42,7 @@ export const POST = async (req: Request) => {
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
-    if (error instanceof Error) {
-      console.log(error.message);
-      return new NextResponse(error.message, { status: 500 });
-    }
-
-    console.log("Error", error);
-    return new NextResponse("An unexpected error occurred", { status: 500 });
+    console.error("Checkout error:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
   }
 };
