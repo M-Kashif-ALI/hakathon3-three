@@ -57,6 +57,7 @@ const Cart = () => {
                   alt={item.title}
                   height={150}
                   width={150}
+                  priority
                 />
                 <div className="text-[#757575] mr-[110px] flex flex-col">
                   <span className="text-[#272343]">{item.title}</span>
