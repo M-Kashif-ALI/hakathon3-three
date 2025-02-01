@@ -27,7 +27,7 @@ const NavBar = () => {
       <div className="bg-[#272343] h-[45px] text-gray-400 flex justify-between items-center px-4 md:px-8">
         <p className="flex items-center gap-1 text-sm">
           <FiCheck />
-          No free shipping
+          Free Shippings
         </p>
         <ul className="flex items-center gap-3 text-sm">
           <li>Eng</li>

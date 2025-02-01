@@ -15,15 +15,11 @@ const Cart = () => {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
-
-  const taxRate = 0.08;
-  const shippingCost = cart.length > 0 ? 7 : 0;
-  const taxAmount = subtotal * taxRate;
-  const total = subtotal + taxAmount + shippingCost;
+  const total = subtotal;
 
   const handleCheckout = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/checkout", {
+      const response = await fetch("/api/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,6 +30,8 @@ const Cart = () => {
       const data = await response.json();
       if (data.url) {
         window.location.href = data.url;
+      } else {
+        console.error("Checkout failed: No URL returned");
       }
     } catch (error) {
       console.error("Error during checkout", error);
@@ -111,12 +109,8 @@ const Cart = () => {
             <span>${subtotal.toFixed(2)}</span>
           </div>
           <div className="flex justify-between py-2">
-            <span>Tax (8%)</span>
-            <span>${taxAmount.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between py-2">
             <span>Shipping</span>
-            <span>${shippingCost.toFixed(2)}</span>
+            <span>Free!</span>
           </div>
           <div className="flex justify-between font-bold border-t my-2 border-b py-5">
             <span>Total</span>
@@ -124,7 +118,7 @@ const Cart = () => {
           </div>
           <div className="flex items-center justify-center">
             <button
-              className="h-[60px] w-[270px] py-2 mt-4 bg-[#029FAE] text-white  hover:bg-[#21b1be] duration-200 rounded-full"
+              className="h-[60px] w-[270px] py-2 mt-4 bg-[#029FAE] text-white hover:bg-[#21b1be] duration-200 rounded-full"
               onClick={handleCheckout}
             >
               Checkout
