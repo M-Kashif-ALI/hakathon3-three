@@ -36,8 +36,8 @@ export const POST = async (req: Request) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cancel`,
+      success_url: `/success`,
+      cancel_url: `/cancel`,
     });
 
     return NextResponse.json({ url: session.url });
