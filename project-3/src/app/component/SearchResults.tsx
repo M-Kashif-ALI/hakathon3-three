@@ -37,7 +37,7 @@ export const SearchResults = ({ results, isActive }: SearchResultsProps) => {
         ))
       ) : (
         <div className="mx-4 h-[50px] flex items-center justify-center text-gray-500 italic">
-          Sorry, no products found :( Please try searching for something else.
+          Sorry, no products found Please try searching for something else.
         </div>
       )}
     </section>

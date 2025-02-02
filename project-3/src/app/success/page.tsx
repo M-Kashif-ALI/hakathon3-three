@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 
-const Page = () => {
+const Success = () => {
   return (
     <div className="h-[90vh] bg-white flex flex-col items-center justify-center primary-text-color md:gap-3 gap-1 md:pt-[90px] pt-[100px] ml-[20px]">
       <p className="text-[#4F46E5] font-bold">SUCCESS</p>
@@ -21,4 +21,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Success;
