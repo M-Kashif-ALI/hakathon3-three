@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CartContext } from "./context";
 
 interface cartItem {
@@ -15,8 +15,22 @@ interface cartItem {
 }
 
 const CartProvider = ({ children }: { children: React.ReactNode }) => {
-  const [cart, setCart] = useState<cartItem[]>([]);
-  const [count, setCount] = useState(0);
+  const [cart, setCart] = useState<cartItem[]>(() => {
+    
+    const storedCart = localStorage.getItem("cart");
+    return storedCart ? JSON.parse(storedCart) : [];
+  });
+
+  const [count, setCount] = useState<number>(() => {
+    
+    const storedCount = localStorage.getItem("count");
+    return storedCount ? parseInt(storedCount) : 0;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("count", JSON.stringify(count));
+  }, [cart, count]);
 
   // --------------- Add Functionality ------------------ \\
   const add = (item: cartItem) => {
@@ -52,13 +66,14 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
       }
     }
   };
-  
 
   // --------------- Clear Cart Functionality ------------------ \\
 
   const clearCart = () => {
     setCart([]);
-     setCount(0);
+    setCount(0);
+    localStorage.removeItem("cart");
+    localStorage.removeItem("count");
   };
 
   return (

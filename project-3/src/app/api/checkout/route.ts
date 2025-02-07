@@ -12,7 +12,6 @@ interface Product {
   imageurl: string;
 }
 
-
 export const POST = async (req: Request) => {
   try {
     const body = await req.json();
@@ -27,7 +26,7 @@ export const POST = async (req: Request) => {
           name: item.title,
           images: [item.imageurl],
         },
-        unit_amount: item.price * 100,
+        unit_amount: item.price * 100, // Stripe expects amount in cents
       },
       quantity: item.quantity,
     }));
@@ -42,7 +41,18 @@ export const POST = async (req: Request) => {
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
+    // Log the full error for debugging
     console.error("Checkout error:", error);
+
+    // Check if Stripe error and return message
+    if (error instanceof Stripe.errors.StripeError) {
+      return new NextResponse(
+        `Stripe error: ${error.message}`,
+        { status: 500 }
+      );
+    }
+
+    // Default error handling
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 };
